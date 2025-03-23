@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>23 Mart</title>
+  <!-- Google Fonts kullanarak hoş bir yazı tipi ekleyelim -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #87CEEB; /* Yumuşak mavi arka plan */
+      font-family: 'Poppins', sans-serif; /* Modern yazı tipi */
+      color: white;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Giriş kısmı için stil */
+    .intro-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%); /* Yazıyı tam ortaya yerleştir */
+      width: 80%;
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.5); /* Hafif şeffaf siyah arka plan */
+      border-radius: 15px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+      font-size: 26px;
+      font-weight: 400;
+      letter-spacing: 1px;
+      animation: fadeIn 2s ease-out;
+      text-align: center;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    .text-container {
+      font-size: 24px;
+      padding: 20px;
+      cursor: pointer;
+      position: relative;
+      background-color: transparent; /* Şeffaf arka plan */
+      border-radius: 10px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .heart {
+      font-size: 180px;
+      color: white;
+      position: absolute;
+      opacity: 1;
+      animation: pulse 1.5s infinite;
+      cursor: pointer;
+    }
+
+    .heart-text {
+      font-size: 30px;
+      font-weight: bold;
+      color: #ff66b2;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+      position: absolute;
+      bottom: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      cursor: pointer;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.3); opacity: 0.8; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .lyrics-container {
+      position: absolute;
+      bottom: -100%;
+      width: 100%;
+      text-align: center;
+      font-size: 22px;
+      font-weight: bold;
+      color: white;
+      opacity: 1;
+      animation: scrollLyrics 20s linear forwards;
+      line-height: 1.6;
+    }
+
+    @keyframes scrollLyrics {
+      0% { bottom: -100%; opacity: 1; }
+      10% { opacity: 1; }
+      100% { bottom: 100%; opacity: 1; }
+    }
+
+    .special-background {
+      background: linear-gradient(to right, #ff66b2, #ff2a68); /* Kırmızı ve pembe tonları */
+    }
+
+    .final-message {
+      font-size: 22px;
+      font-weight: bold;
+      color: white;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 1;
+    }
+
+    /* Alttan kalplerin rastgele yükselmesi için animasyon */
+    .rising-heart {
+      position: absolute;
+      bottom: -150px;
+      font-size: 30px;
+      opacity: 1;
+      animation: rise 3s forwards;
+      color: #ff66b2;
+    }
+
+    @keyframes rise {
+      0% {
+        bottom: -150px;
+        opacity: 1;
+      }
+      100% {
+        bottom: 100%;
+        opacity: 1;
+      }
+    }
+
+    /* Telefon uyumlu yapalım */
+    @media (max-width: 600px) {
+      .intro-container {
+        font-size: 18px;
+        width: 90%;
+        padding: 15px;
+      }
+
+      .heart {
+        font-size: 150px;
+      }
+
+      .heart-text {
+        font-size: 24px;
+      }
+
+      .lyrics-container {
+        font-size: 18px;
+      }
+
+      .final-message {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="intro" class="intro-container">
+    <div id="message" class="text-container" onclick="showNextMessage()">Bugün 23 Mart</div>
+  </div>
+
+  <div id="heart" class="heart hidden" onclick="showLyrics()">❤️
+    <div class="heart-text">Dokun</div>
+  </div>
+
+  <div id="lyrics" class="lyrics-container hidden">
+    Düşüyorum ona biri tutsun <br>
+    Dalıyorum dibe beni yutsun diye <br>
+    Çabalıyorum ama çok zorsun <br>
+    Yanıyorum bu kız benim olsun diye <br><br>
+    Düşüyorum ona biri tutsun <br>
+    Dalıyorum dibe beni yutsun diye <br>
+    Çabalıyorum ama çok zorsun <br><br>
+    Bilmem bu neyin nesi <br>
+    Güzelliğin böylesi <br>
+    Varmış benden delisi (wow, wow, wow, wow) <br>
+    Olamaz, olucam kölesi <br><br>
+    Bilmem bu neyin nesi <br>
+    Güzelliğin böylesi <br>
+    Varmış benden delisi (wow, wow, wow, wow) <br>
+    Oh yo olucam kölesi
+  </div>
+
+  <div id="final-message" class="final-message hidden">
+    Evet çok hata yaptım
+  </div>
+
+  <script>
+    const messages = [
+      "Bugün 23 Mart",
+      "Ayrılalı 3 ay oluyor neredeyse",
+      "Ama şu sürede anlayamadığım bir şey var",
+      "Ben seni neden bu kadar seviyordum ki",
+      "Benimle bir 23'e daha ne dersin"
+    ];
+    
+    let index = 0;
+    const messageDiv = document.getElementById("message");
+    const heart = document.getElementById("heart");
+    const heartText = document.querySelector(".heart-text");
+    const lyrics = document.getElementById("lyrics");
+    const finalMessage = document.getElementById("final-message");
+
+    function showNextMessage() {
+      index++;
+      if (index < messages.length) {
+        messageDiv.innerText = messages[index];
+      } else {
+        messageDiv.classList.add("hidden");
+        document.body.classList.add("special-background");
+        heart.classList.remove("hidden");
+        heartText.classList.remove("hidden");
+      }
+    }
+
+    function showLyrics() {
+      heart.classList.remove("hidden");
+      heartText.classList.add("hidden");
+      lyrics.classList.remove("hidden");
+
+      // Alttan kalplerin her yerden yukarı yükselmesini sağlıyoruz
+      setInterval(() => {
+        const xPosition = Math.random() * window.innerWidth; // Rastgele X koordinatı
+        const leftHeart = document.createElement('div');
+        leftHeart.classList.add('rising-heart');
+        leftHeart.style.left = `${xPosition}px`; // Rastgele X pozisyonu
+        leftHeart.innerHTML = '❤️';
+        document.body.appendChild(leftHeart);
+
+        setTimeout(() => {
+          leftHeart.remove(); // Kalp yukarı çıktıktan sonra kaldırıyoruz
+        }, 3000); // 3 saniye sonra kalp kaybolur
+      }, 500); // 500ms aralıklarla rastgele kalpler yükselir
+
+      setTimeout(() => {
+        lyrics.classList.add("hidden");
+        finalMessage.classList.remove("hidden");
+
+        const personalMessages = [
+          "Evet çok hata yaptım",
+          "Seni kırdım, üzdüm",
+          "Ama her şeyi anladım",
+          "Senin değerin de dahil",
+          "Tam her şeyden vazgeçmişken",
+          "Birden karşıma çıkan",
+          "Bana umut veren <span class='leydim'>LEYDIM</span>",
+          "Beni affedebilir misin"
+        ];
+
+        let personalIndex = 0;
+        const finalMessageDiv = document.getElementById("final-message");
+
+        function showPersonalMessage() {
+          if (personalIndex < personalMessages.length) {
+            finalMessageDiv.innerHTML = personalMessages[personalIndex];
+            personalIndex++;
+            setTimeout(showPersonalMessage, 4000);
+          } else {
+            finalMessageDiv.classList.add("fade-out");
+          }
+        }
+        showPersonalMessage();
+      }, 20000);
+    }
+  </script>
+
+</body>
+</html>
